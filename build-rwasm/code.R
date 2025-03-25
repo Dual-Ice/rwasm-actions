@@ -64,3 +64,7 @@ rwasm::add_pkg(packages, repo_dir = repo_path, compress = compress, dependencies
 
 message("\n\nMaking library")
 rwasm::make_vfs_library(out_dir = image_path, repo_dir = repo_path, strip = strip, compress = compress)
+
+message("\n\nFiles in image_path:\n")
+file_list <- list.files(image_path, recursive = TRUE)
+cat(file_list, sep = "\n")
