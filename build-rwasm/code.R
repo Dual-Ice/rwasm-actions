@@ -31,7 +31,7 @@ strip <- strsplit(strip, "[[:space:],]+")[[1]]
 if (is.character(strip) && length(strip) == 1 && strip == "NULL") strip <- NULL
 
 cat("\nArgs:\n")
-str(list(image_path = image_path, repo_path = repo_path, packages = packages, strip = strip))
+str(list(image_path = image_path, repo_path = repo_path, compress = compress, packages = packages, strip = strip, dependencies = dependencies))
 
 if (!require("withr", character.only = TRUE, quietly = TRUE)) install.packages("withr")
 
