@@ -26,6 +26,19 @@ packages <- args[4]
 strip <- args[5]
 dependencies <- args[6]
 
+if (is.character(dependencies)) {
+  dependencies <- switch(dependencies,
+                         "TRUE" = TRUE,
+                         "FALSE" = FALSE,
+                         "NA" = NA,
+                         FALSE)
+} else if (is.null(dependencies)) {
+  dependencies <- FALSE
+} else if (is.logical(dependencies)) {
+  dependencies <- as.logical(dependencies)
+}
+
+compress <- as.logical(compress)
 packages <- strsplit(packages, "[[:space:],]+")[[1]]
 strip <- strsplit(strip, "[[:space:],]+")[[1]]
 if (is.character(strip) && length(strip) == 1 && strip == "NULL") strip <- NULL
