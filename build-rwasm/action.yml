@@ -28,6 +28,10 @@ inputs:
     default: false
     type: boolean
     required: false
+  dependencies:
+    description:  Dependency specification for packages to additionally add to the repository. Defaults to `FALSE`, meaning no additional packages. Use `NA` to install only hard dependencies whereas `TRUE` installs all optional dependencies as well.
+    required: false
+    default: "FALSE"
 runs:
 #  using: 'docker'
 #  image: 'Dockerfile'
@@ -38,6 +42,7 @@ runs:
 #    - ${{ inputs.compress }}
 #    - ${{ inputs.packages }}
 #    - ${{ inputs.strip }}
+#    - ${{ inputs.dependencies }}
 # TODO: Remove this below workaround for https://github.com/orgs/community/discussions/25241
   using: 'composite'
   steps:
@@ -45,5 +50,5 @@ runs:
       shell: bash
     - run: |
         docker run --rm -v $(pwd):/github/workspace --workdir /github/workspace r-wasm-build-rwasm:${GITHUB_SHA} \
-        /code.R "${{ inputs.image-path }}" "${{ inputs.repo-path }}" "${{ inputs.compress }}" "${{ inputs.packages }}" "${{ inputs.strip }}"
+        /code.R "${{ inputs.image-path }}" "${{ inputs.repo-path }}" "${{ inputs.compress }}" "${{ inputs.packages }}" "${{ inputs.strip }}" "${{ inputs.dependencies }}"
       shell: bash

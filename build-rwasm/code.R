@@ -24,6 +24,7 @@ gha_dir <- file.path("/github/workspace")
 
 packages <- args[4]
 strip <- args[5]
+dependencies <- args[6]
 
 packages <- strsplit(packages, "[[:space:],]+")[[1]]
 strip <- strsplit(strip, "[[:space:],]+")[[1]]
@@ -46,7 +47,7 @@ withr::local_envvar(list(
 pak::pak(c("r-wasm/rwasm"))
 
 message("\n\nAdding packages:\n", paste("* ", packages, sep = "", collapse = "\n"))
-rwasm::add_pkg(packages, repo_dir = repo_path, compress = compress)
+rwasm::add_pkg(packages, repo_dir = repo_path, compress = compress, dependencies = dependencies)
 
 message("\n\nMaking library")
 rwasm::make_vfs_library(out_dir = image_path, repo_dir = repo_path, strip = strip, compress = compress)
