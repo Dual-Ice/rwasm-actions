@@ -57,7 +57,7 @@ withr::local_envvar(list(
 ))
 
 # Install rwasm (after PAT is set)
-pak::pak(c("r-wasm/rwasm"))
+pak::pak(c("Conjoint-ly/rwasm"))
 
 message("\n\nAdding packages:\n", paste("* ", packages, sep = "", collapse = "\n"))
 rwasm::add_pkg(packages, repo_dir = repo_path, compress = compress, dependencies = dependencies)
